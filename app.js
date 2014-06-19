@@ -12,6 +12,14 @@ app.use(express.compress())
    .use(express.json())
    .use(express.static(__dirname + '/public'));
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+
+
+app.get('/user/:name', function(req, res) {
+  res.render('index.jade');
+});
+
 app.post('/user', function(req, res) {
   console.log(req.body.username);
   github.user.getFrom( { user: req.body.username }, function(err, result) {
