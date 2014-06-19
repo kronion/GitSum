@@ -1,7 +1,7 @@
 {
   "name": "GitSum",
   "version": "0.0.0",
-  "description": "A taste of your GitHub history",
+  "description": "A taste of your GitHub activity",
   "author": "Collin Stedman",
   "private": true,
   "main": "app.js",

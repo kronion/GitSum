@@ -16,20 +16,32 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
 
-app.get('/user/:name', function(req, res) {
+app.get('/user/:name', function (req, res) {
   res.render('index.jade');
 });
 
-app.post('/user', function(req, res) {
-  console.log(req.body.username);
-  github.user.getFrom( { user: req.body.username }, function(err, result) {
-    if (err) {
-      res.send(err);
+app.post('/user', function (req, res) {
+  github.repos.getFromUser( { user: req.body.username }, function (err, data) {
+    languages = {}
+    for (repo in data) {
+      if (!(data[repo].language in languages)) {
+        languages[data[repo].language] = 1;
+      }
+      else {
+        languages[data[repo].language]++;
+      }
     }
-    else {
-      res.send('<img src=' + result.avatar_url + '/>');
-    }
-  })
+    delete languages['undefined'];
+    res.send(languages);
+  });
+  // github.user.getFrom( { user: req.body.username }, function(err, result) {
+  //   if (err) {
+  //     res.send(err);
+  //   }
+  //   else {
+  //     res.send('<img src=' + result.avatar_url + '/>');
+  //   }
+  // })
 });
 
 app.listen(9001);
