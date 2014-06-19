@@ -1,0 +1,13 @@
+{
+  "name": "GitSum",
+  "version": "0.0.0",
+  "description": "Your personal GitHub business card.",
+  "author": "Collin Stedman",
+  "private": true,
+  "main": "app.js",
+  "dependencies": {
+    "express": "3.x",
+    "github": "^0.2.0"
+  },
+  "license": "ISC"
+}
